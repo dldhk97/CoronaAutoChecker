@@ -15,6 +15,7 @@ RUN apt-get install -y google-chrome-stable
 # set display port to avoid crash
 ENV DISPLAY=:99
 
+# install requirements
 RUN pip3 install -r requirements.txt
 
 ENV USER_ID ID
