@@ -1,4 +1,4 @@
-import os
+import os, sys
 from selenium import webdriver
 from .driver import downloader
 from .login_page import login
@@ -28,14 +28,16 @@ def parse():
 
 ## env
 def _check_env():
-    if(os.path.exists('./.env') == False):
+    if os.path.exists('./.env') == False:
         raise Exception('No .env file! Please create .env file using .env_example')
+    if len(sys.argv) < 3:
+        raise Exception('Invalid args! Please run with args (USER_ID, USER_PASSWORD)')
 
 ## Driver
 def _load_driver():
     downloader.download_driver()
 
-    if(os.path.exists('./chromedriver.exe') == False):
+    if os.path.exists('./chromedriver.exe') == False:
         raise Exception('No chromedriver!')
 
     options = _get_options()
@@ -46,8 +48,8 @@ def _load_driver():
 def _get_options():
     options = webdriver.ChromeOptions()
     
-    # options.add_argument('headless')
-    # options.add_argument("no-sandbox")
+    options.add_argument('headless')
+    options.add_argument("no-sandbox")
 
     options.add_argument("disable-gpu")
     options.add_argument("lang=ko_KR")

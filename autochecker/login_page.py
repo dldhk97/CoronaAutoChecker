@@ -1,9 +1,9 @@
-import os
+import sys
 from .selenium_utils import get_elem_by_id
 
 def login(driver):
-    user_id = os.environ.get('USER_ID')
-    user_password = os.environ.get('USER_PASSWORD')
+    user_id = sys.argv[1]
+    user_password = sys.argv[2]
 
     _fill_input_box(driver, user_id, 'Form_아이디.아이디_my_inputBox')
     _fill_input_box(driver, user_password, 'Form_비밀번호.비밀번호')
