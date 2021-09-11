@@ -20,9 +20,7 @@ def download_driver():
     with zipfile.ZipFile(latest_driver_zip, 'r') as zip_ref:
         zip_ref.extractall()
     os.remove(latest_driver_zip)
-    print('chromedriver download complete!')
-
-    
+    print('chromedriver download complete!')   
 
 def _get_latest_version():
     url = os.environ.get('CHROME_DRIVER_URL') + 'LATEST_RELEASE'
