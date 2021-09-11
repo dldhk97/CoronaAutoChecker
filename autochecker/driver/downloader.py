@@ -6,7 +6,7 @@ import wget
 import zipfile
 
 def download_driver():
-    if(os.path.exists('./chromedriver.exe') == True):
+    if (os.path.exists('./chromedriver.exe') == True) or (os.path.exists('./chromedriver') == True):
         return
     print('chromedriver does not exists!')
 

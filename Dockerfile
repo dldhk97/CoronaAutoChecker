@@ -11,6 +11,6 @@ RUN pip3 install -r requirements.txt
 ENV USER_ID ID
 ENV USER_PASSWORD PASSWORD
 
-CMD ["main.py"]
+CMD echo "USER_ID=$USER_ID"
 
-ENTRYPOINT ["python3", USER_ID, USER_PASSWORD]
+ENTRYPOINT python main.py $USER_ID $USER_PASSWORD

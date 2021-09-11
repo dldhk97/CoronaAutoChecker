@@ -37,13 +37,23 @@ def _check_env():
 def _load_driver():
     downloader.download_driver()
 
-    if os.path.exists('./chromedriver.exe') == False:
+    if (os.path.exists('./chromedriver.exe') == False) and (os.path.exists('./chromedriver') == False):
         raise Exception('No chromedriver!')
 
     options = _get_options()
+    
+    absolute_path = os.path.dirname(os.path.abspath(__file__))
+    root_path = os.path.abspath(os.path.join(absolute_path, os.pardir))
+    driver_path = root_path + '/chromedriver'
+    print('chrome_driver_path=' + driver_path)
 
-    driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=options)
-    return driver
+    try:
+       os.chmod(driver_path, 0o0777)
+    except Exception as e:
+       print('Failed to chmod driver')
+       print(e)
+
+    return webdriver.Chrome(executable_path=driver_path, chrome_options=options)
 
 def _get_options():
     options = webdriver.ChromeOptions()

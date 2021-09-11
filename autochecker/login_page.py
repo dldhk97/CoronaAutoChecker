@@ -5,6 +5,8 @@ def login(driver):
     user_id = sys.argv[1]
     user_password = sys.argv[2]
 
+    print('USER_ID=' + user_id)
+
     _fill_input_box(driver, user_id, 'Form_아이디.아이디_my_inputBox')
     _fill_input_box(driver, user_password, 'Form_비밀번호.비밀번호')
 
