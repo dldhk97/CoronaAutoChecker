@@ -9,11 +9,11 @@ Google Chrome, python3.8
 # install requirements
 python3 -m pip install -r requirements.txt
 
-# run
-python3 main.py YOUR_USER_ID YOUR_USER_PASSWORD HOUR MINUTE
+# setup .env
+Open .env file and put your id, password
 
-# example
-python3 main.py 20991234 p4ssw0rd 08 30
+# run
+python3 main.py
 ```
 
 ## How to use with docker-compose
