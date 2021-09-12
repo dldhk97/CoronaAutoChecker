@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import os
 import wget
 import zipfile
-from .driver_util import get_archive_file_name_by_platform, is_driver_excutable_file_exists
+from .platform_utils import get_archive_file_name_by_platform, is_driver_excutable_file_exists
 
 def download_driver():
     if is_driver_excutable_file_exists():
