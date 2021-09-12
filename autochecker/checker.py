@@ -1,8 +1,8 @@
 import os, sys
 from selenium import webdriver
-from .driver import downloader
-from .login_page import login
-from .check_page import check_all
+from .driver import downloader, driver_util
+from .page.login_page import login
+from .page.check_page import check_all
 
 def parse():
     try:
@@ -37,14 +37,12 @@ def _check_env():
 def _load_driver():
     downloader.download_driver()
 
-    if (os.path.exists('./chromedriver.exe') == False) and (os.path.exists('./chromedriver') == False):
+    if not driver_util.is_driver_excutable_file_exists():
         raise Exception('No chromedriver!')
 
     options = _get_options()
     
-    absolute_path = os.path.dirname(os.path.abspath(__file__))
-    root_path = os.path.abspath(os.path.join(absolute_path, os.pardir))
-    driver_path = root_path + '/chromedriver'
+    driver_path = driver_util.get_driver_excutable_file_path()
     print('chrome_driver_path=' + driver_path)
 
     try:

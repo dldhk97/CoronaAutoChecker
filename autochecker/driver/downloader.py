@@ -1,18 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
 import os
-import platform
 import wget
 import zipfile
+from .driver_util import get_archive_file_name_by_platform, is_driver_excutable_file_exists
 
 def download_driver():
-    if (os.path.exists('./chromedriver.exe') == True) or (os.path.exists('./chromedriver') == True):
+    if is_driver_excutable_file_exists():
         return
     print('chromedriver does not exists!')
 
     latest_version = _get_latest_version()
     base_url = os.environ.get('CHROME_DRIVER_URL') + latest_version + '/'
-    file_name = _get_file_name_by_platform()
+    file_name = get_archive_file_name_by_platform()
     download_url = base_url + file_name
 
     print('chromedriver download started!')
@@ -32,20 +32,3 @@ def _get_latest_version():
     else:
         print(response.status_code)
         raise Exception('Failed to get latest chromedriver version')
-
-def _get_file_name_by_platform():
-    sys = platform.system()
-    arch = 'Unknown'
-
-    if sys == 'Windows':
-        arch = 'win32'
-    elif sys == 'Linux':
-        arch = 'linux64'
-    elif sys == 'Darwin':
-        arch = 'mac64'
-        if platform.processor == 'arm':
-            arch += '_m1'
-    else:
-        raise Exception('Failed to download chromedriver. Unknown OS.')
-    
-    return 'chromedriver_' + arch + '.zip'
