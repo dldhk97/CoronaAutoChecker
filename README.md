@@ -13,7 +13,7 @@ python3 -m pip install -r requirements.txt
 python3 main.py YOUR_USER_ID YOUR_USER_PASSWORD TIME
 
 # example
-python3 main .py 20991234 p4ssw0rd 08:30
+python3 main.py 20991234 p4ssw0rd 08:30
 ```
 
 ## How to use with docker-compose
