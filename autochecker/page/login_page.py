@@ -31,9 +31,11 @@ def _click_login_button(driver):
 def _check_loggined(driver):
     try:
         alert = driver.switch_to_alert()
-        alert.accept()
-        print("You've already submitted it!")
-        quit()
+        print(alert.text)
+        if '일치하지 않습니다' in alert.text:
+            raise Exception('Incorrect ID, password!')
+        if '이미 제출하셨습니다' in alert.text:
+            raise Exception("You've already submitted it!")
     except Exception as e:
         print(e)
         return

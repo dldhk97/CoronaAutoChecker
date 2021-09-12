@@ -9,10 +9,10 @@ def parse():
         url = os.environ.get('SELF_CHECK_URL')
 
         driver = load_driver()
-
         driver.get(url=url)
         
         print('I got it!')
+
         login(driver)
         check_all(driver)
         
@@ -31,5 +31,3 @@ def _check_env():
         raise Exception('No .env file! Please create .env file using .env_example')
     if len(sys.argv) < 3:
         raise Exception('Invalid args! Please run with args (USER_ID, USER_PASSWORD)')
-
-## Driver
