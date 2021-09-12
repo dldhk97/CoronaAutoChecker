@@ -8,8 +8,8 @@ def parse():
         _check_env()
         _random_sleep()
 
-        user_id = sys.argv[1]
-        user_password = sys.argv[2]
+        user_id = os.environ.get('USER_ID')
+        user_password = os.environ.get('USER_PASSWORD')
         url = os.environ.get('SELF_CHECK_URL')
 
         driver = load_driver()
@@ -30,9 +30,7 @@ def parse():
 
 def _check_env():
     if os.path.exists('./.env') == False:
-        raise Exception('No .env file! Please create .env file using .env_example')
-    if len(sys.argv) < 3:
-        raise Exception('Invalid args! Please run with args (USER_ID, USER_PASSWORD)')
+        raise Exception('No .env file! Please create .env file!')
 
 def _random_sleep():
     sleep_time = random.randrange(0, 5)
