@@ -10,10 +10,10 @@ Google Chrome, python3.8
 python3 -m pip install -r requirements.txt
 
 # run
-python3 main.py YOUR_USER_ID YOUR_USER_PASSWORD TIME
+python3 main.py YOUR_USER_ID YOUR_USER_PASSWORD HOUR MINUTE
 
 # example
-python3 main.py 20991234 p4ssw0rd 08:30
+python3 main.py 20991234 p4ssw0rd 08 30
 ```
 
 ## How to use with docker-compose
@@ -33,7 +33,8 @@ services:
     environment:
       - USER_ID=YOUR_USER_ID
       - USER_PASSWORD=YOUR_USER_PASSWORD
-      - CHECK_EVERY_DAY_AT=08:30
+      - CHECK_EVERY_DAY_AT_HOUR=08
+      - CHECK_EVERY_DAY_AT_MINUTE=30
 ```
 
 ### run
