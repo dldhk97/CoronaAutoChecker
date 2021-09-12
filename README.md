@@ -25,14 +25,15 @@ docker build -t dldhk97/corona_auto_checker:0.1 .
 
 ### create docker-compose.yml
 ```
-version: "3" 
-services: 
-  corona_auto_checker: 
+version: "3"
+services:
+  corona_auto_checker:
     image: dldhk97/corona_auto_checker:0.1
     container_name: corona_auto_checker
     environment:
       - USER_ID=YOUR_USER_ID
       - USER_PASSWORD=YOUR_USER_PASSWORD
+      - RUN_EVERY_DAY=True
       - CHECK_EVERY_DAY_AT_HOUR=08
       - CHECK_EVERY_DAY_AT_MINUTE=30
 ```
@@ -43,8 +44,4 @@ docker-compose up -d
 ```
 
 ## TODO
-- [ ] 경량화(alpine 이미지 사용)
-- [x] 스케쥴(매일 몇시마다 실행, ENV로 받아서 설정가능)
-- [ ] 잡다한 이미지 및 컨테이너 생성하지 않게(alpine 사용 시)
-- [x] 시간 랜덤화
-- [x] OS 상관없이 잘 작동하게
+- [ ] 경량화(alpine 이미지 + Chronium 사용)
