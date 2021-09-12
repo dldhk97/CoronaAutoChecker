@@ -16,7 +16,7 @@ def click_element(driver, elem_id):
         elem = get_elem_by_id(driver, elem_id)
         elem.click()
     except:
-        raise Exception('Failed to click' + elem_id)
+        raise Exception('Failed to click ' + elem_id)
 
 def click_alert(driver):
     alert = driver.switch_to_alert()

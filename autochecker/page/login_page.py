@@ -1,10 +1,6 @@
-import sys
 from .selenium_utils import get_elem_by_id
 
-def login(driver):
-    user_id = sys.argv[1]
-    user_password = sys.argv[2]
-
+def login(driver, user_id, user_password):
     print('USER_ID=' + user_id)
 
     _fill_input_box(driver, user_id, 'Form_아이디.아이디_my_inputBox')
@@ -29,13 +25,10 @@ def _click_login_button(driver):
         raise Exception('Failed to login')
 
 def _check_loggined(driver):
-    try:
-        alert = driver.switch_to_alert()
-        print(alert.text)
-        if '일치하지 않습니다' in alert.text:
-            raise Exception('Incorrect ID, password!')
-        if '이미 제출하셨습니다' in alert.text:
-            raise Exception("You've already submitted it!")
-    except Exception as e:
-        print(e)
-        return
+    alert = driver.switch_to_alert()
+    print('Login page says :' + alert.text)
+    
+    if '일치하지 않습니다' in alert.text:
+        raise Exception('Incorrect ID, password!')
+    if '이미 제출하셨습니다' in alert.text:
+        raise Exception("You've already submitted it!")

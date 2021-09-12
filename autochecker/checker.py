@@ -5,19 +5,21 @@ from .page.check_page import check_all
 
 def parse():
     try:
-        _random_sleep()
         _check_env()
+        _random_sleep()
+
+        user_id = sys.argv[1]
+        user_password = sys.argv[2]
         url = os.environ.get('SELF_CHECK_URL')
 
         driver = load_driver()
         driver.get(url=url)
         
         print('I got it!')
-
-        login(driver)
+        login(driver, user_id, user_password)
         check_all(driver)
-        
         print('Done!')
+        
     except Exception as e:
         print(e)
     
@@ -26,7 +28,6 @@ def parse():
     except:
         pass
 
-## env
 def _check_env():
     if os.path.exists('./.env') == False:
         raise Exception('No .env file! Please create .env file using .env_example')
