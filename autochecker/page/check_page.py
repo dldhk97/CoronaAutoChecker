@@ -1,4 +1,4 @@
-from ..selenium_utils import get_elem_by_id
+from .selenium_utils import get_elem_by_id
 
 def check_all(driver):
     click_element(driver, 'Form_문항1.radio1.m1')

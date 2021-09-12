@@ -1,5 +1,5 @@
 import sys
-from ..selenium_utils import get_elem_by_id
+from .selenium_utils import get_elem_by_id
 
 def login(driver):
     user_id = sys.argv[1]
