@@ -6,6 +6,7 @@ def reserve(job):
         raise Exception('Invalid ags! If you want reservation, please input valid args (USER_ID, USER_PASSWORD, CHECK_EVERY_DAY_AT')
     
     args_time = sys.argv[3] + ':' + sys.argv[4]
+    print(args_time)
     check_everyday_time = _normalize_time_str(args_time)
 
     if not _is_time_format(check_everyday_time):
