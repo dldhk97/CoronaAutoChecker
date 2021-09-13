@@ -25,10 +25,15 @@ def _click_login_button(driver):
         raise Exception('Failed to login')
 
 def _check_loggined(driver):
-    alert = driver.switch_to_alert()
-    print('Login page says :' + alert.text)
+    alert_text = 'None'
+    try:
+        alert = driver.switch_to_alert()
+        print('Login page says :' + alert.text)
+        alert_text = alert.text
+    except:
+        return
     
-    if '일치하지 않습니다' in alert.text:
+    if '일치하지 않습니다' in alert_text:
         raise Exception('Incorrect ID, password!')
-    if '이미 제출하셨습니다' in alert.text:
+    if '이미 제출하셨습니다' in alert_text:
         raise Exception("You've already submitted it!")

@@ -15,7 +15,7 @@ def parse():
         driver = load_driver()
         driver.get(url=url)
         
-        print('I got it!')
+        print('Page open succeed!')
         login(driver, user_id, user_password)
         check_all(driver)
         print('Done!')
