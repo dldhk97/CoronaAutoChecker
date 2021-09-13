@@ -1,13 +1,18 @@
-import sys, time, os
+import os, time, random
 import schedule
+from .checker import parse
 
-def reserve(job):
+def reserve():
     _check_env()
     
+    print('Reservation started.')
+
     input_hour = os.environ.get('CHECK_EVERY_DAY_AT_HOUR')
     input_minute = os.environ.get('CHECK_EVERY_DAY_AT_MINUTE')
     input_time = input_hour + ':' + input_minute
-    print(input_time)
+
+    print('Input time = ' + input_time)
+
     check_everyday_time = _normalize_time_str(input_time)
 
     if not _is_time_format(check_everyday_time):
@@ -19,6 +24,12 @@ def reserve(job):
     while True:
         schedule.run_pending()
         time.sleep(1)
+
+def job():
+    if os.environ.get('RANDOM_SLEEP') == 'True':
+        _random_sleep()
+
+    parse()
 
 def _normalize_time_str(input):
     return input.replace('"', '')
@@ -33,3 +44,9 @@ def _is_time_format(input):
 def _check_env():
     if os.path.exists('./.env') == False:
         raise Exception('No .env file! Please create .env file!')
+
+def _random_sleep():
+    sleep_time = 60 * random.randrange(1, 10)                       # 0m ~ 10m
+    print('Now sleep for ' + str(round(sleep_time / 60)) + ' minute')
+    time.sleep(sleep_time)
+    print('Now awaked')

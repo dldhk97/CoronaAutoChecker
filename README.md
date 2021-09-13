@@ -36,6 +36,7 @@ services:
       - RUN_EVERY_DAY=True
       - CHECK_EVERY_DAY_AT_HOUR=08
       - CHECK_EVERY_DAY_AT_MINUTE=30
+      - RANDOM_SLEEP=True
 ```
 
 ### run

@@ -1,4 +1,4 @@
-import os, sys, time, random
+import os
 from .driver.driver_utils import load_driver
 from .page.login_page import login
 from .page.check_page import check_all
@@ -6,7 +6,6 @@ from .page.check_page import check_all
 def parse():
     try:
         _check_env()
-        _random_sleep()
 
         user_id = os.environ.get('USER_ID')
         user_password = os.environ.get('USER_PASSWORD')
@@ -31,9 +30,3 @@ def parse():
 def _check_env():
     if os.path.exists('./.env') == False:
         raise Exception('No .env file! Please create .env file!')
-
-def _random_sleep():
-    sleep_time = random.randrange(0, 5)
-    print('Now sleep for ' + str(sleep_time) + 's')
-    time.sleep(sleep_time)
-    print('Now awaked')
