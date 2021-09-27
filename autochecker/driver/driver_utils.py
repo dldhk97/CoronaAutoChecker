@@ -2,6 +2,7 @@ import os
 from selenium import webdriver
 from .downloader import download_driver 
 from .platform_utils import is_driver_excutable_file_exists, get_driver_excutable_file_path
+from ..log.logger import print_log
 
 def load_driver():
     download_driver()
@@ -12,13 +13,13 @@ def load_driver():
     options = _get_options()
     
     driver_path = get_driver_excutable_file_path()
-    print('chrome_driver_path=' + driver_path)
+    print_log('chrome_driver_path=' + driver_path)
 
     try:
        os.chmod(driver_path, 0o0777)
     except Exception as e:
-       print('Failed to chmod driver')
-       print(e)
+       print_log('Failed to chmod driver')
+       print_log(e)
 
     return webdriver.Chrome(executable_path=driver_path, chrome_options=options)
 

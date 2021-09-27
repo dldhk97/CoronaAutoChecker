@@ -1,8 +1,6 @@
 from .selenium_utils import get_elem_by_id
 
 def login(driver, user_id, user_password):
-    print('USER_ID=' + user_id)
-
     _fill_input_box(driver, user_id, 'Form_아이디.아이디_my_inputBox')
     _fill_input_box(driver, user_password, 'Form_비밀번호.비밀번호')
 
@@ -27,12 +25,14 @@ def _click_login_button(driver):
 def _check_loggined(driver):
     alert_text = 'None'
     try:
+        # Try to find alertbox.
         alert = driver.switch_to_alert()
-        print('Login page says :' + alert.text)
         alert_text = alert.text
     except:
+        # Alertbox not found.(login succeed)
         return
     
+    # If alertbox exists, compare text.
     if '일치하지 않습니다' in alert_text:
         raise Exception('Incorrect ID, password!')
     if '이미 제출하셨습니다' in alert_text:

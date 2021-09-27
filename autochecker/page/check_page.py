@@ -8,7 +8,6 @@ def check_all(driver):
     click_element(driver, 'Form_문항5.radio5.m1')
     click_element(driver, 'Form8.pb1')                  # Submit button
     click_alert(driver)
-    print("Checks submitted!")
     
 
 def click_element(driver, elem_id):

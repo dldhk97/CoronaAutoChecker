@@ -1,17 +1,18 @@
 import os, time, random
 import schedule
 from .checker import parse
+from .log.logger import print_log
 
 def reserve():
     _check_env()
     
-    print('Reservation started.')
+    print_log('Reservation started.')
 
     input_hour = os.environ.get('CHECK_EVERY_DAY_AT_HOUR')
     input_minute = os.environ.get('CHECK_EVERY_DAY_AT_MINUTE')
     input_time = input_hour + ':' + input_minute
 
-    print('Input time = ' + input_time)
+    print_log('Input time = ' + input_time)
 
     check_everyday_time = _normalize_time_str(input_time)
 
@@ -19,7 +20,7 @@ def reserve():
         raise Exception('Invalid time format! Please input valid format like 21 30')
 
     schedule.every().day.at(check_everyday_time).do(job)
-    print('Reservation completed! Now it runs at ' + str(check_everyday_time) + ' every day.')
+    print_log('Reservation completed! Now it runs at ' + str(check_everyday_time) + ' every day.')
 
     while True:
         schedule.run_pending()
@@ -47,6 +48,6 @@ def _check_env():
 
 def _random_sleep():
     sleep_time = 60 * random.randrange(1, 10)                       # 0m ~ 10m
-    print('Now sleep for ' + str(round(sleep_time / 60)) + ' minute')
+    print_log('Now sleep for ' + str(round(sleep_time / 60)) + ' minute')
     time.sleep(sleep_time)
-    print('Now awaked')
+    print_log('Now awaked')
