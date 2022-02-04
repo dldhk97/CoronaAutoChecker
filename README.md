@@ -1,5 +1,5 @@
 # CoronaAutoChecker
-코로나 자가진단 자동화 프로그램
+금오공대 기숙사 코로나 자가진단 자동화 프로그램
 
 ## Requirements
 Google Chrome, python3.8
